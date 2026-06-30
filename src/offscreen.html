@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <title>STS offscreen worker</title>
+</head>
+<body>
+  <!-- Hidden background page. Processes the image-generation queue so work
+       continues after the popup is closed (the MV3 service worker can't). -->
+  <script type="module" src="offscreen.js"></script>
+</body>
+</html>

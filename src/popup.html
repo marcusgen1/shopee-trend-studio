@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="logo">🛒</span>
+      <strong>Shopee Trend Studio</strong>
+      <span id="count" class="count">0</span>
+    </div>
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Lọc theo tên…" />
+      <select id="sort">
+        <option value="capturedAt">Mới bắt</option>
+        <option value="sold">Bán nhiều</option>
+        <option value="priceVnd">Giá tăng dần</option>
+      </select>
+    </div>
+    <div class="actions">
+      <button id="selectAll" class="btn">Chọn tất cả</button>
+      <button id="exportCsv" class="btn">Export CSV</button>
+      <button id="exportJson" class="btn">Export JSON</button>
+      <button id="clear" class="btn danger">Xoá</button>
+    </div>
+  </header>
+
+  <div id="hint" class="hint">
+    Mở <b>shopee.vn/top_products</b> (hoặc trang tìm kiếm/danh mục) và cuộn trang —
+    sản phẩm sẽ tự xuất hiện ở đây.
+  </div>
+
+  <ul id="list"></ul>
+
+  <footer>
+    <button id="batchImg" class="btn" title="Tạo ảnh cho các sản phẩm đã tick">🎨 Ảnh</button>
+    <button id="batchVid" class="btn" title="Tạo video cho các sản phẩm đã tick">🎬 Video</button>
+    <button id="showJobs" class="btn primary">🖼 <span id="jobsBadge" class="badge">0</span></button>
+    <a id="opts" href="#" class="link">⚙︎</a>
+  </footer>
+
+  <!-- Preset chooser: enqueues a background job -->
+  <div id="genPanel" class="panel hidden">
+    <div class="panel-head">
+      <span id="genTitle">🎨 Tạo ảnh viral</span>
+      <button id="genClose" class="btn">✕</button>
+    </div>
+    <div class="panel-body">
+      <div class="gen-product">
+        <img id="genSrc" alt="" />
+        <span id="genName"></span>
+      </div>
+      <label>Phong cách</label>
+      <select id="presetSel"></select>
+      <button id="genRun" class="btn primary">➕ Tạo ảnh (chạy nền)</button>
+      <div id="genStatus" class="gen-status"></div>
+      <a id="genGoJobs" href="#" class="link">Xem Kết quả →</a>
+    </div>
+  </div>
+
+  <!-- Jobs / results, persisted in storage (survives popup close) -->
+  <div id="jobsPanel" class="panel hidden">
+    <div class="panel-head">
+      <span>🖼 Kết quả &amp; hàng đợi</span>
+      <span class="panel-head-actions">
+        <button id="jobsClearDone" class="btn">Xoá mục xong</button>
+        <button id="jobsClose" class="btn">✕</button>
+      </span>
+    </div>
+    <div class="panel-body">
+      <ul id="jobsList" class="jobs"></ul>
+      <div id="jobsEmpty" class="hint">Chưa có job nào. Bấm 🎨 trên một sản phẩm để tạo ảnh.</div>
+    </div>
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
